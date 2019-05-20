@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './todo.dart';
+import './post.dart';
 
 class MyfriendPage extends StatelessWidget {
   final color = const Color(0xffb71c1c);
@@ -38,6 +39,13 @@ class MyfriendPage extends StatelessWidget {
             ),
             RaisedButton(
               child: Text("POST"),
+              onPressed: () {
+                Navigator.push(context, 
+                MaterialPageRoute(
+                  builder: (context) => PostPage(id: this.id,),
+                )
+                );
+              },
             ),
             RaisedButton(
               child: Text("ALBUMS"),

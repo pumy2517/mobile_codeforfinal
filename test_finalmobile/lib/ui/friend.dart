@@ -18,11 +18,16 @@ Future<List<User>> fetchUsers() async {
 
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
+    print(response);
     var body = json.decode(response.body);
+    print(body);
     for (int i = 0; i < body.length; i++) {
       var user = User.fromJson(body[i]);
+      print("\n");
+      print(body[i]);
       userApi.add(user);
     }
+    print(userApi[0].username);
     return userApi;
   } else {
     // If that call was not successful, throw an error.
@@ -35,9 +40,10 @@ class User {
   final String name;
   final String email;
   final String phone;
+  final String username;
   final String website;
 
-  User({this.id, this.name, this.email, this.phone, this.website});
+  User({this.id, this.name, this.email, this.phone, this.website, this.username});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -46,6 +52,7 @@ class User {
       email: json['email'],
       phone: json['phone'],
       website: json['website'],
+      username: json['username'],
     );
   }
 }
@@ -75,7 +82,7 @@ class FriendPageState extends State<FriendPage> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                  case ConnectionState.waiting:
+                  case ConnectionState.waiting: 
                     return new Text('loading...');
                   default:
                     if (snapshot.hasError) {
@@ -94,6 +101,7 @@ class FriendPageState extends State<FriendPage> {
 
   Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
     List<User> values = snapshot.data;
+    // print(values);
     return new Expanded(
       child: new ListView.builder(
         itemCount: values.length,

@@ -39,7 +39,7 @@ class Todo {
       userid: json['userId'],
       id: json['id'],
       title: json['title'],
-      completed: (json['completed'] ? "complete" : ""),
+      completed: (json['completed'] ? "complete" : "Not done"),
     );
   }
 }

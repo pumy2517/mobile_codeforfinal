@@ -4,6 +4,7 @@ import './ui/loginPage.dart';
 import './ui/home.dart';
 import './ui/profile.dart';
 import './ui/friend.dart';
+import './ui/post.dart';
 
 void main() => runApp(MyApp());
 
